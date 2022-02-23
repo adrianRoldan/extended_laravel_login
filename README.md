@@ -32,7 +32,9 @@ Laravel version: 9.1.0
 1. Run: `composer install`
 2. Start your docker
 3. Execute `./vendor/bin/sail up` to up containers
-4. Configure your .env file with your Google keys to test the Google Login. [Info to create Google Api Keys](https://cloud.google.com/docs/authentication/api-keys)
+4. Run migrations and seeders `sail artisan migrate --seed`
+5. Compile frontend with `sail npm run dev`
+6. Configure your .env file with your Google keys to test the Google Login. [Info to create Google Api Keys](https://cloud.google.com/docs/authentication/api-keys)
 ```dotenv
 GOOGLE_ID=
 GOOGLE_SECRET=
@@ -43,6 +45,13 @@ GOOGLE_SECRET=
 
 The application runs in the port 80:
 http://localhost
+
+To manage mysql database you can use phpmyadmin:
+http://localhost:8080
+
+You have a default user available to test:
+- emails: test@test.com or alias@example.com
+- pass: password
 
 --------
 
