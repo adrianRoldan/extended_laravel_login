@@ -23,11 +23,11 @@ class LoginService
     }
 
     /**
-     * @param array $credentials
+     * @param array<string,string> $credentials
      * @return mixed
      * @throws AuthNotFoundExceptionDomain
      */
-    public function execute(array $credentials)
+    public function execute(array $credentials): mixed
     {
         if (!$this->authProvider->attempt($credentials))
             throw new AuthNotFoundExceptionDomain('Correo electrónico o contraseña incorrectos.');

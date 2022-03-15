@@ -4,9 +4,9 @@ namespace Src\Shared\Infrastructure\Response;
 
 class DataResponse extends BaseResponse
 {
-    private $data;
+    private mixed $data;
 
-    public function __construct(string $message, $data, int $status = 200)
+    public function __construct(string $message, mixed $data, int $status = 200)
     {
         parent::__construct($message, $status);
         $this->data = $data;
@@ -14,7 +14,7 @@ class DataResponse extends BaseResponse
 
     /**
      * Formatea el objeto en formato array
-     * @return array
+     * @return array<string,mixed>
      */
     public function toArray() : array
     {

@@ -23,7 +23,7 @@ class LogoutService
     }
 
 
-    public function execute()
+    public function execute(): void
     {
         $this->authProvider->logout();
     }

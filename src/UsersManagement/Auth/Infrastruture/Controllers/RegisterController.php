@@ -26,10 +26,10 @@ class RegisterController
 
 
     /**
-     * @param array $data
+     * @param array<string,string|array<array<string,string>>> $data
      * @throws Throwable
      */
-    public function __invoke(array $data)
+    public function __invoke(array $data): void
     {
         try {
 

@@ -19,7 +19,7 @@ class UsersSearcher
     /**
      * Este servicio retorna todos los usuarios
      */
-    public function execute()
+    public function execute(): mixed
     {
         return $this->repository->all();
     }

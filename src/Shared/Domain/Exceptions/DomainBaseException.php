@@ -14,21 +14,12 @@ use Throwable;
  */
 abstract class DomainBaseException extends Exception
 {
-    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    public function __construct(string $message = "", int $code = 0, Throwable $previous = null)
     {
         if(!empty($message) or (!empty($message) and !empty($code)))
             parent::__construct($message, $this->getGeneratedStatus(), $previous);
     }
 
-    public function getExceptionMessage()
-    {
-        return parent::getMessage();
-    }
 
-    public function getExceptionTraceAsString()
-    {
-        return parent::getTraceAsString();
-    }
-
-    abstract public function getGeneratedStatus();
+    abstract public function getGeneratedStatus(): int;
 }

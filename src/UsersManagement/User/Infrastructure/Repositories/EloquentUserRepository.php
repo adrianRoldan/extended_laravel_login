@@ -20,10 +20,13 @@ use Src\UsersManagement\User\Domain\ValueObjects\UserPassword;
 
 class EloquentUserRepository implements UserRepositoryContract
 {
-
+    /** @var EloquentUser  */
     private EloquentUser $eloquentUser;
     private EloquentUserEmail $eloquentUserEmail;
 
+    /**
+     * @var array|string[]
+     */
     private array $default_relations = ["emails"];  //Se aplica esta realacion de Eloquent por defecto al modelo $eloquentUser
 
     public function __construct(EloquentUser $eloquentUser, EloquentUserEmail $eloquentUserEmail )
@@ -35,20 +38,27 @@ class EloquentUserRepository implements UserRepositoryContract
 
     /**
      * @param UserId $id
-     * @param array $relations
+     * @param array<string> $relations
      * @return User|null
      * @throws ValidationDomainException
      */
     public function find(UserId $id, array $relations = []): ?User
     {
-        if(!$eloquentUser = $this->with($relations)->where("uuid", $id->value())->first())
-            return null;
+        /** @var EloquentUser|null */
+        $eloquentUser = $this->with($relations)->where("uuid", $id->value())->first();
+        if($eloquentUser == null) return null;
+
+        /** @var Collection<int,EloquentUserEmail> */
+        $emails = $eloquentUser->emails;
+
+        /** @var array<array<string, string>> $emails_array */
+        $emails_array = $emails->toArray();
 
         return new User(
             $id,
             new UserName($eloquentUser->name),
             new UserPassword($eloquentUser->password),
-            new UserEmails($eloquentUser->emails->toArray()),
+            new UserEmails($emails_array),
             new UserAvatar($eloquentUser->avatar),
             new UserGoogleId($eloquentUser->google_id),
         );
@@ -57,20 +67,27 @@ class EloquentUserRepository implements UserRepositoryContract
 
     /**
      * @param UserGoogleId $google_id
-     * @param array $relations
+     * @param array<string> $relations
      * @return User|null
      * @throws ValidationDomainException
      */
     public function findByGoogleId(UserGoogleId $google_id, array $relations = []): ?User
     {
-        if(!$eloquentUser = $this->with($relations)->where("google_id", $google_id->value())->first())
-            return null;
+        /** @var EloquentUser|null */
+        $eloquentUser = $this->with($relations)->where("google_id", $google_id->value())->first();
+        if($eloquentUser == null) return null;
+
+        /** @var Collection<int,EloquentUserEmail> */
+        $emails = $eloquentUser->emails;
+
+        /** @var array<array<string, string>> $emails_array */
+        $emails_array = $emails->toArray();
 
         return new User(
             new UserId($eloquentUser->uuid),
             new UserName($eloquentUser->name),
             new UserPassword($eloquentUser->password),
-            new UserEmails($eloquentUser->emails->toArray()),
+            new UserEmails($emails_array),
             new UserAvatar($eloquentUser->avatar),
             $google_id
         );
@@ -101,20 +118,20 @@ class EloquentUserRepository implements UserRepositoryContract
 
 
     /**
-     * @param array $relations
-     * @return Builder[]|Collection
+     * @param array<string> $relations
+     * @return Builder[]|Collection<int,EloquentUser>
      */
-    public function all(array $relations = [])
+    public function all(array $relations = []): Collection|array
     {
         return $this->with($relations)->get();
     }
 
 
     /**
-     * @param array $relations
+     * @param array<string> $relations
      * @return Builder
      */
-    private function with(array $relations = [])
+    private function with(array $relations = []): Builder
     {
         if(!$relations)
             $relations = $this->default_relations;
@@ -133,10 +150,10 @@ class EloquentUserRepository implements UserRepositoryContract
     }
 
 
-
     /**
      * @param UserId $id
      * @return UserEmails
+     * @throws ValidationDomainException
      */
     public function getEmailsByUser(UserId $id): UserEmails
     {

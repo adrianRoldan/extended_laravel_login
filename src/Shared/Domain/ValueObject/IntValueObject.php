@@ -32,7 +32,7 @@ abstract class IntValueObject
      * @param int|string $value
      * @throws ValidationDomainException
      */
-    private function validate(int|string $value)
+    private function validate(int|string $value): void
     {
         if(!is_numeric($value))
             throw new ValidationDomainException("El ID introducido no tiene un formato numerico.");

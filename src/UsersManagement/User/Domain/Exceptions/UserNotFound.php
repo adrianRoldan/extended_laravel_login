@@ -20,7 +20,7 @@ class UserNotFound extends DomainBaseException implements ExceptionContract
     /**
      * @return int
      */
-    public function getGeneratedStatus()
+    public function getGeneratedStatus(): int
     {
         return self::GENERATED_STATUS;
     }

@@ -21,10 +21,10 @@ class CreateUserEmailController
 
     /**
      * @param string $id
-     * @param array $emails
+     * @param array<array<string,string>> $emails
      * @return ExceptionResponse|MessageResponse
      */
-    public function __invoke(string $id, array $emails)
+    public function __invoke(string $id, array $emails): ExceptionResponse|MessageResponse
     {
         try {
             $this->emailsCreator->execute($id, $emails);

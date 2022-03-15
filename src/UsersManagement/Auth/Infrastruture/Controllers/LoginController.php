@@ -25,11 +25,12 @@ class LoginController
     }
 
     /**
-     * @param $credentials
-     * @throws Throwable
+     * @param array<string,string> $credentials
+     * @return mixed
      * @throws AuthNotFoundExceptionDomain
+     * @throws Throwable
      */
-    public function __invoke($credentials)
+    public function __invoke(array $credentials): mixed
     {
         try {
 

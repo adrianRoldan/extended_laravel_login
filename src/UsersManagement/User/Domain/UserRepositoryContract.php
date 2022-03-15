@@ -14,13 +14,22 @@ interface UserRepositoryContract
 {
     public function find(UserId $id): ?User;
 
+    /**
+     * @param UserGoogleId $google_id
+     * @param array<string> $relations
+     * @return User|null
+     */
     public function findByGoogleId(UserGoogleId $google_id, array $relations = []): ?User;
 
     public function save(User $user): void;
 
     public function delete(UserId $id): void;
 
-    public function all(array $relations = []);
+    /**
+     * @param array<string> $relations
+     * @return mixed
+     */
+    public function all(array $relations = []): mixed;
 
     public function update(UserId $id, User $user): void;
 

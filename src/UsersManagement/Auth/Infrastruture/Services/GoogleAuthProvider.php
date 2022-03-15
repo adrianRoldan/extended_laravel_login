@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Contracts\Provider;
+use Laravel\Socialite\Contracts\User;
 use Laravel\Socialite\Facades\Socialite;
 use Src\UsersManagement\Auth\Domain\Contracts\AuthProviderContract;
 use Src\UsersManagement\Auth\Domain\Contracts\SocialAuthProviderContract;
@@ -48,9 +49,9 @@ class GoogleAuthProvider implements SocialAuthProviderContract
 
     /**
      * Redirecciona hacia la pantalla de autenticación de Google
-     * @return RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|RedirectResponse
      */
-    public function redirectToProvider()
+    public function redirectToProvider(): \Symfony\Component\HttpFoundation\RedirectResponse|RedirectResponse
     {
         return $this->googleAuth->redirect();
     }
@@ -60,7 +61,7 @@ class GoogleAuthProvider implements SocialAuthProviderContract
      * Loguea al usuario de Google en el sistema. En caso de no exister realiza el registro
      * @return Application|RedirectResponse|Redirector
      */
-    public function login()
+    public function login(): Redirector|RedirectResponse|Application
     {
         $google_user = $this->user();
 
@@ -85,9 +86,9 @@ class GoogleAuthProvider implements SocialAuthProviderContract
 
     /**
      * Devuelve una instancia de Usuario del paquete Socialite de Laravel con la información obtenida de Google
-     * @return \Laravel\Socialite\Contracts\User
+     * @return User
      */
-    public function user()
+    public function user(): User
     {
         return $this->googleAuth->user();
     }

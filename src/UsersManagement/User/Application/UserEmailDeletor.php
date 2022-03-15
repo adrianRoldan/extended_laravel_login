@@ -19,7 +19,7 @@ class UserEmailDeletor
     /**
      * @param int $id
      */
-    public function execute(int $id)
+    public function execute(int $id): void
     {
         $id = new UserEmailId($id);
         $this->repository->deleteEmail($id);

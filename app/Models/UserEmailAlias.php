@@ -6,6 +6,11 @@ use Database\Factories\UserEmailAliasFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method where(string $string, string|null $value)
+ * @method get()
+ * @method findOrFail(int $value)
+ */
 class UserEmailAlias extends Model
 {
     use HasFactory;

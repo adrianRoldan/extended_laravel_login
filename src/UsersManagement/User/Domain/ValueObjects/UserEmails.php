@@ -9,9 +9,12 @@ use Src\Shared\Domain\ValueObject\ArrayValueObject;
 
 final class UserEmails extends ArrayValueObject
 {
+
+    /** @var array<int,array<string, string>> **/
+    protected array $value;
     /**
      * UserEmails constructor.
-     * @param array $value
+     * @param array<array<string,string>> $value
      * @throws ValidationDomainException
      */
     public function __construct(array $value)
@@ -21,10 +24,18 @@ final class UserEmails extends ArrayValueObject
     }
 
     /**
-     * @param array $value
+     * @return array<int,array<string, string>>
+     */
+    public function value(): array
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param array<array<string,string>> $value
      * @throws ValidationDomainException
      */
-    private function validate(array $value)
+    private function validate(array $value): void
     {
         if(empty($value))
             throw new ValidationDomainException("Has de indicar como mínimo un email.");

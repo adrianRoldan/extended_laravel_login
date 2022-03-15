@@ -14,7 +14,7 @@ class BaseResponse
     }
 
 
-    public function getStatus(): string
+    public function getStatus(): int
     {
         return $this->status;
     }
@@ -22,7 +22,7 @@ class BaseResponse
 
     /**
      * Formatea el objeto en formato array
-     * @return array
+     * @return array<string,string|int>
      */
     public function toArray() : array
     {

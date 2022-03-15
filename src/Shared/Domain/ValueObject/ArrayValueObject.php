@@ -12,14 +12,21 @@ namespace Src\Shared\Domain\ValueObject;
  */
 abstract class ArrayValueObject
 {
-    protected ?array $value;
+    /** @var array<int,mixed> **/
+    protected array $value;
 
-    public function __construct(?array $value)
+    /**
+     * @param array<int,mixed> $value
+     */
+    public function __construct(array $value)
     {
         $this->value = $value;
     }
 
-    public function value(): ?array
+    /**
+     * @return array<int,mixed>
+     */
+    public function value(): array
     {
         return $this->value;
     }

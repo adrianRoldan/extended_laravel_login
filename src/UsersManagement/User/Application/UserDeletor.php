@@ -20,7 +20,7 @@ class UserDeletor
      * @param string $id
      * @throws ValidationDomainException
      */
-    public function execute(string $id)
+    public function execute(string $id): void
     {
         //Transformamos el string de entrada en un Identificador de Usuario único
         $id = new UserId($id);

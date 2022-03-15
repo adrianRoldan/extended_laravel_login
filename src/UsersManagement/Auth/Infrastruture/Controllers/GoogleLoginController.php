@@ -22,12 +22,12 @@ class GoogleLoginController
         $this->googleLoginService = new GoogleLoginService($socialAuthProvider);
     }
 
-    public function redirect()
+    public function redirect(): mixed
     {
         return $this->googleLoginService->redirect();
     }
 
-    public function login()
+    public function login(): mixed
     {
         return $this->googleLoginService->login();
     }

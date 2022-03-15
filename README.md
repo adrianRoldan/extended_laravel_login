@@ -56,6 +56,7 @@ You have a default user available to test:
 --------
 
 ### API Endpoint
+
 The following endpoint returns the email domains most used by users. With the optional parameter we can limit the number of returned domains.<br>
 
 When making requests using API tokens, the token should be included in the Authorization header as a Bearer token.<br>

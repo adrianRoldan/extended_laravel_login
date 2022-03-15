@@ -21,7 +21,7 @@ class UserEmailsSearcher
      * Este servicio retorna los emails del user $user_id
      *
      * @param string $user_id
-     * @return mixed
+     * @return UserEmails
      * @throws ValidationDomainException
      */
     public function execute(string $user_id): UserEmails

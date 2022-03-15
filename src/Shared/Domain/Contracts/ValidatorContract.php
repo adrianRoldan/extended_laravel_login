@@ -16,7 +16,7 @@ interface ValidatorContract
     public function __construct(RulesValidations $rules);
 
     /**
-     * @param array $data
+     * @param array<string,string> $data
      * @return bool
      * @throws ValidationDomainException
      */

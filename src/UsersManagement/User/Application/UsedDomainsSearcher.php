@@ -18,16 +18,18 @@ class UsedDomainsSearcher
 
     /**
      * @param int|null $maxDomains
-     * @return array
+     * @return array<string,int>
      */
-    public function execute(?int $maxDomains)
+    public function execute(?int $maxDomains): array
     {
         $emails = $this->repository->getEmails();
 
         $mostUsedDomains = [];
         foreach($emails->value() as $email){
 
-            $domain = explode('@', $email['email'])[1]; //Obtenemos el dominio de la cuenta de correo
+            /** @var array<string> */
+            $current_email = $email;
+            $domain = explode('@',$current_email['email'])[1]; //Obtenemos el dominio de la cuenta de correo
 
             if(!isset($mostUsedDomains[$domain]))
                 $mostUsedDomains[$domain] = 1;  // Inicializamos el elemento "domain" del array

@@ -17,7 +17,7 @@ class GoogleUserNotFound extends DomainBaseException implements ExceptionContrac
         parent::__construct("El usuario con id de google {$id->value()} no ha sido encontrado.", self::GENERATED_STATUS, null);
     }
 
-    public function getGeneratedStatus()
+    public function getGeneratedStatus(): int
     {
         return self::GENERATED_STATUS;
     }

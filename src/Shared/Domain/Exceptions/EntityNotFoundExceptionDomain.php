@@ -9,7 +9,7 @@ class EntityNotFoundExceptionDomain extends DomainBaseException implements Excep
     private const GENERATED_STATUS = 404;
     protected string $debug_level = "critical";
 
-    public function getGeneratedStatus()
+    public function getGeneratedStatus(): int
     {
         return self::GENERATED_STATUS;
     }

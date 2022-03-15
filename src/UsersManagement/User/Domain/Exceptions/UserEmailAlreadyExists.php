@@ -17,7 +17,7 @@ class UserEmailAlreadyExists extends DomainBaseException implements ExceptionCon
         parent::__construct("El email {$email->value()} ya está registrado.", self::GENERATED_STATUS, null);
     }
 
-    public function getGeneratedStatus()
+    public function getGeneratedStatus(): int
     {
         return self::GENERATED_STATUS;
     }

@@ -21,13 +21,19 @@ class GoogleLoginService
         $this->socialAuthProvider = $socialAuthProvider;
     }
 
-    public function login()
+    /**
+     * @return mixed
+     */
+    public function login(): mixed
     {
         return $this->socialAuthProvider->login();
     }
 
 
-    public function redirect()
+    /**
+     * @return mixed
+     */
+    public function redirect(): mixed
     {
         return $this->socialAuthProvider->redirectToProvider();
     }

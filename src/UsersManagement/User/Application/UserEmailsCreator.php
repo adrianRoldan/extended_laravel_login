@@ -26,18 +26,21 @@ class UserEmailsCreator
      * Este servicio inserta los $emails facilitados y los asigna al usuario $user_id
      *
      * @param string $user_id
-     * @param array $emails
+     * @param array<array<string,string>> $emails
      * @throws UserEmailAlreadyExists
      * @throws ValidationDomainException
      */
-    public function execute(string $user_id, array $emails)
+    public function execute(string $user_id, array $emails): void
     {
         $id = new UserId($user_id);
         $emails = new UserEmails($emails);
 
         //Comprobamos que los emails no estén ya registrados
-        foreach($emails->value() as $email)
-            $this->checkAlreadyExists($email['email']);
+        foreach($emails->value() as $email) {
+            /** @var string $email */
+            $email = $email['email'];
+            $this->checkAlreadyExists($email);
+        }
 
         $this->repository->saveEmailsByUser($id, $emails);
     }
@@ -47,7 +50,7 @@ class UserEmailsCreator
      * @param string $email
      * @throws UserEmailAlreadyExists
      */
-    private function checkAlreadyExists(string $email)
+    private function checkAlreadyExists(string $email): void
     {
         try {
             $userEmail = $this->emailFinder->execute($email);

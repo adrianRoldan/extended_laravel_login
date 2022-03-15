@@ -8,12 +8,31 @@ use Src\UsersManagement\User\Domain\Entities\User;
 
 interface AuthProviderContract
 {
-    public function attempt(array $credentials);
+    /**
+     * @param array<string,string> $credentials
+     * @return bool
+     */
+    public function attempt(array $credentials): bool;
 
-    public function login(User $user);
-    public function logout();
+    /**
+     * @param User $user
+     * @return void
+     */
+    public function login(User $user): void;
 
-    public function register(array $data);
+    /**
+     * @return void
+     */
+    public function logout(): void;
 
-    public function user();
+    /**
+     * @param array<string,mixed> $data
+     * @return void
+     */
+    public function register(array $data): void;
+
+    /**
+     * @return mixed
+     */
+    public function user(): mixed;
 }

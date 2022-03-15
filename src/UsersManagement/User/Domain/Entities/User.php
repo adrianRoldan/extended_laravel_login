@@ -64,12 +64,12 @@ final class User implements EntityContract
         return $this->name;
     }
 
-    public function avatar(): UserAvatar
+    public function avatar(): ?UserAvatar
     {
         return $this->avatar;
     }
 
-    public function googleId(): UserGoogleId
+    public function googleId(): ?UserGoogleId
     {
         return $this->google_id;
     }
@@ -87,17 +87,17 @@ final class User implements EntityContract
 
     /**
      * Transforma los valueObjects de la entidad User en array
-     * @return array
+     * @return array<string,mixed>
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             "uuid"      => $this->id->value(),
             "name"      => $this->name->value(),
             "password"  => $this->password->value(),
             "emails"    => $this->emails->value(),
-            "avatar"    => $this->avatar->value(),
-            "google_id" => $this->google_id->value()
+            "avatar"    => $this->avatar ? $this->avatar->value() : "",
+            "google_id" => $this->google_id ? $this->google_id->value() : ""
         ];
     }
 }

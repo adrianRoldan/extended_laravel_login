@@ -8,12 +8,7 @@ class ValidationDomainException extends DomainBaseException implements Exception
 {
     private const GENERATED_STATUS = 422;
 
-    public function getExceptionMessage()
-    {
-        return (array) json_decode(parent::getExceptionMessage());
-    }
-
-    public function getGeneratedStatus()
+    public function getGeneratedStatus(): int
     {
         return self::GENERATED_STATUS;
     }

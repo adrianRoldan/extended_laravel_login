@@ -24,13 +24,15 @@ class RegisterService
     }
 
     /**
-     * @param array $data
+     * @param array<string,mixed|string> $data
      */
-    public function execute(array $data)
+    public function execute(array $data): void
     {
+        /** @var string $password */
+        $password = $data['password'];
         $this->authProvider->register([
             'name'      => $data['name'],
-            'password'  => $this->hashProvider->hash($data['password']),
+            'password'  => $this->hashProvider->hash($password),
             'emails'    => [["email" => $data['email']]]
         ]);
     }

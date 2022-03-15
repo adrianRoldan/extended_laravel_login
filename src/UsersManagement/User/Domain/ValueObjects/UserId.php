@@ -9,4 +9,5 @@ use Src\Shared\Domain\ValueObject\UuidValueObject;
 
 final class UserId extends UuidValueObject
 {
+
 }

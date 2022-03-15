@@ -25,11 +25,10 @@ final class UserName extends StringValueObject
      * @param string $value
      * @throws ValidationDomainException
      */
-    private function validate(string $value)
+    private function validate(string $value): void
     {
         if($value == "")
             throw new ValidationDomainException("El parametro [name] no puede estar vacio");
-
 
     }
 }

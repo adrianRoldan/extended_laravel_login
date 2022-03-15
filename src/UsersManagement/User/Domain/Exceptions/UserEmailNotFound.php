@@ -17,7 +17,7 @@ class UserEmailNotFound extends DomainBaseException implements ExceptionContract
         parent::__construct("El email {$email->value()} no ha sido encontrado.", self::GENERATED_STATUS, null);
     }
 
-    public function getGeneratedStatus()
+    public function getGeneratedStatus(): int
     {
         return self::GENERATED_STATUS;
     }

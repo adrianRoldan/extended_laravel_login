@@ -24,7 +24,7 @@ final class UserEmail extends StringValueObject
      * @param string $value
      * @throws ValidationDomainException
      */
-    private function validate(string $value)
+    private function validate(string $value): void
     {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL))
             throw new ValidationDomainException("El email (".$value.") no es correcto.");
