@@ -4,7 +4,6 @@
 namespace Src\UsersManagement\Auth\Infrastruture\Services;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User as EloquentUser;
 use Illuminate\Validation\ValidationException;
 use Src\Shared\Domain\Exceptions\ValidationDomainException;
@@ -17,17 +16,18 @@ use Src\UsersManagement\User\Domain\UserRepositoryContract;
  * Class LaravelAuthProvider
  * Adaptador de proveedor de autenticación que utiliza la autenticación de Laravel
  *
+ * @method self guard()
  * @package Src\UsersManagement\Auth\Infrastruture\Services
  */
 class LaravelAuthProvider implements AuthProviderContract
 {
 
-    private Auth $laravelAuth;
+    private LaravelAuth $laravelAuth;
     private UserCreator $userCreator;
 
     public function __construct(UserRepositoryContract $userRepository)
     {
-        $this->laravelAuth = new Auth();
+        $this->laravelAuth = new LaravelAuth();
         $this->userCreator = new UserCreator($userRepository);
     }
 
