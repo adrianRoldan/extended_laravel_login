@@ -15,6 +15,8 @@ The application implements the following features and technologies:
 - Project built on a <strong>Docker</strong> development environment through a <strong>Laravel Sail</strong> interaction. [More info](https://laravel.com/docs/9.x/sail)
 - Support for users universally unique identifiers (uuid)
 
+<strong>This project passes level 9 of phpstan</strong>
+
 ## Environment Setup
 Laravel version: 9.1.0
 ### PHP requeriments
